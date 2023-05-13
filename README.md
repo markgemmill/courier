@@ -1,4 +1,12 @@
-# courier 
+<h1 align="center">courier</h1> 
+
+<p align="center">
+   <a href="https://golang.org"><img src="https://img.shields.io/badge/Made%20with-Go-1f425f.svg" alt="made-with-Go"></a>
+   <a href="https://github.com/markgemmill/courier/blob/master/go.mod"><img alt="GitHub go.mod Go version" src="https://img.shields.io/github/go-mod/go-version/markgemmill/courier"></a>
+   <a href="https://github.com/markgemmill/courier/blob/master/LICENSE.txt"><img alt="GitHub" src="https://img.shields.io/github/license/markgemmill/courier"></a>
+   <a href="https://goreportcard.com/report/github.com/markgemmill/courier"><img src="https://goreportcard.com/badge/github.com/markgemmill/courier" alt="GoReportCard"></a>
+   <a href="https://github.com/markgemmill/courier"><img alt="GitHub release (latest SemVer)" src="https://img.shields.io/github/v/tag/markgemmill/courier?sort=semver"></a>
+</p>
 
 courier is an email library with a different metaphor and for simplicity. 
 

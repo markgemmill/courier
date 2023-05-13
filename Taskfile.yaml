@@ -8,6 +8,10 @@ tasks:
       - rm -f bin/*
       - go build -o bin/courier cli/main.go
 
+  lint:
+    cmds:
+      - golangci-lint run -v --new ./...
+
   test:
     cmds:
       - gotestsum --format testname

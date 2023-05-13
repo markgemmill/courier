@@ -2,7 +2,7 @@ package guild
 
 import (
 	"fmt"
-	"github.com/flosch/pongo2/v6"
+	pongo "github.com/flosch/pongo2/v6"
 	"github.com/vanng822/go-premailer/premailer"
 	smail "github.com/xhit/go-simple-mail/v2"
 	"strings"
@@ -12,15 +12,15 @@ import (
 type PongoScribe struct {
 	highPriority    bool
 	message         *Message
-	subjectTemplate *pongo2.Template
-	textTemplate    *pongo2.Template
-	htmlTemplate    *pongo2.Template
+	subjectTemplate *pongo.Template
+	textTemplate    *pongo.Template
+	htmlTemplate    *pongo.Template
 	attachments     []*smail.File
 	errors          []error
 }
 
-func (ps *PongoScribe) createTemplate(tmplStr string) *pongo2.Template {
-	tmpl, err := pongo2.FromString(tmplStr)
+func (ps *PongoScribe) createTemplate(tmplStr string) *pongo.Template {
+	tmpl, err := pongo.FromString(tmplStr)
 	if err != nil {
 		ps.addError(err)
 	}
@@ -92,7 +92,7 @@ func (ps *PongoScribe) GetErrors() error {
 	return fmt.Errorf("Scribe encountered %d error(s): %s", errCount, strings.Join(errDetails, ", "))
 }
 
-func (ps *PongoScribe) renderSubject(ctx pongo2.Context) string {
+func (ps *PongoScribe) renderSubject(ctx pongo.Context) string {
 	if ps.subjectTemplate == nil {
 		return ""
 	}
@@ -105,7 +105,7 @@ func (ps *PongoScribe) renderSubject(ctx pongo2.Context) string {
 	return subject
 }
 
-func (ps *PongoScribe) renderText(ctx pongo2.Context) string {
+func (ps *PongoScribe) renderText(ctx pongo.Context) string {
 	if ps.textTemplate == nil {
 		return ""
 	}
@@ -117,7 +117,7 @@ func (ps *PongoScribe) renderText(ctx pongo2.Context) string {
 	return text
 }
 
-func (ps *PongoScribe) renderHtml(ctx pongo2.Context) string {
+func (ps *PongoScribe) renderHtml(ctx pongo.Context) string {
 	if ps.htmlTemplate == nil {
 		return ""
 	}
@@ -147,10 +147,10 @@ func (ps *PongoScribe) Compose(ctx ...any) Scribe {
 		return ps
 	}
 
-	var pctx pongo2.Context
+	var pctx pongo.Context
 
 	if len(ctx) == 1 {
-		pctx = ctx[0].(pongo2.Context)
+		pctx = ctx[0].(pongo.Context)
 	} else {
 		ps.addError(fmt.Errorf("PongoScribe.Compose only accepts a single Context argument."))
 		return ps
@@ -188,8 +188,8 @@ func NewPongoScribe() *PongoScribe {
 	return &PongoScribe{message: nil}
 }
 
-func MakePongoContext(srcCtx map[string]any) pongo2.Context {
-	ctx := pongo2.Context{}
+func MakePongoContext(srcCtx map[string]any) pongo.Context {
+	ctx := pongo.Context{}
 	for k, v := range srcCtx {
 		ctx[k] = v
 	}

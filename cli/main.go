@@ -77,7 +77,7 @@ func main() {
 			Summary: true,
 		}),
 		kong.Vars{
-			"version": "0.1.0",
+			"version": "0.2.0",
 		})
 	err := ctx.Run(&kong.Context{})
 	ctx.FatalIfErrorf(err, "")

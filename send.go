@@ -18,6 +18,8 @@ func Deliver(p params.Parameters) error {
 
 	if p.TemplateType == "pongo" {
 		scribe = guild.NewPongoScribe()
+	} else if p.TemplateType == "go" {
+		scribe = guild.NewTemplateScribe()
 	} else {
 		scribe = guild.NewSimpleTextScribe()
 	}
@@ -55,6 +57,8 @@ func Deliver(p params.Parameters) error {
 
 	if p.TemplateType == "pongo" {
 		scribe.Compose(guild.MakePongoContext(p.TemplateData))
+	} else if p.TemplateType == "go" {
+		scribe.Compose(p.TemplateData)
 	} else {
 		scribe.Compose()
 	}
